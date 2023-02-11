@@ -1,0 +1,34 @@
+name: basic_cleaning
+conda_env: conda.yml
+
+entry_points:
+  main:
+    parameters:
+
+      input_artifact:
+        description: Name of the raw data file
+        type: string
+
+      output_artifact:
+        description: Name of the preprocessed data file
+        type: string
+
+      output_type:
+        description: Type of the output file
+        type: string
+
+      output_description:
+        description: Give some information about the output file
+        type: string
+
+      min_price:
+        description: Allow price values greater than min_price
+        type: string
+
+      max_price:
+        description: Allow price values lower than max_price
+        type: string
+
+
+    command: >-
+        python run.py  --input_artifact {input_artifact}  --output_artifact {output_artifact}  --output_type {output_type}  --output_description {output_description}  --min_price {min_price}  --max_price {max_price} 
