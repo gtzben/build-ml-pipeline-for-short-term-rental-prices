@@ -35,9 +35,13 @@ def go(args):
     df = pd.read_csv(local_path).set_index("id")
     
 
-    # Remove outliers
+    # Remove price outliers
     idx = df["price"].between(args.min_price, args.max_price)
     df = df[idx].copy()
+
+    # Remove long/lat outliers
+    idx2 = df['longitude'].between(-74.25, -73.50) & df['latitude'].between(40.5, 41.2)
+    df = df[idx2].copy()
 
     # Turn columns to an specific type
     df["last_review"] = pd.to_datetime(df["last_review"])
